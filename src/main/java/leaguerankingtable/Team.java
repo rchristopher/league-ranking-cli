@@ -1,5 +1,8 @@
 package leaguerankingtable;
 
+/**
+ * Team object holding the team name and their current league score
+ */
 public class Team
 {
 	private final String name;
@@ -30,6 +33,13 @@ public class Team
 		return this.name;
 	}
 
+	/**
+	 * Play a game between two teams and update the relevant team's score afterwards
+	 *
+	 * @param teamTwo The team that is playing this team
+	 * @param teamOneScore The score for this team
+	 * @param teamTwoScore The score for the other team
+	 */
 	public void playGame(Team teamTwo, int teamOneScore, int teamTwoScore)
 	{
 		if (teamOneScore > teamTwoScore)                // Team one wins

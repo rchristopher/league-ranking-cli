@@ -2,10 +2,19 @@ package leaguerankingtable;
 
 import java.util.*;
 
+/**
+ * Leaderboard class holding a map of teams in the league
+ */
 public class Leaderboard
 {
 	private final Map<String, Team> leagueScores = new HashMap<>();
 
+	/**
+	 * Get a team from the league, or add a new team if it doesn't exist yet
+	 *
+	 * @param teamName The name of the team in the league
+	 * @return Team object for the teamName entered
+	 */
 	public Team getTeam(String teamName)
 	{
 		// Only store team objects once
@@ -14,6 +23,9 @@ public class Leaderboard
 		return leagueScores.get(teamName);
 	}
 
+	/**
+	 * Print the final scores of the league in order or most points
+	 */
 	public void printFinalScores()
 	{
 		if (leagueScores.size() > 0)

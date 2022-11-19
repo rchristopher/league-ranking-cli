@@ -6,6 +6,9 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * League Ranking CLI application entry point
+ */
 public class LeagueRankingCLI
 {
 	private static final Pattern pattern = Pattern.compile("^(\\D+)\\s*(\\d+),\\s*(\\D+)\\s*(\\d+)");
@@ -14,6 +17,7 @@ public class LeagueRankingCLI
 	{
 		File inputFile = null;
 
+		// Read any command line arguments and validate that they are correct
 		if (args != null && args.length > 0)
 		{
 			for (int i = 0; i < args.length; i++)
@@ -38,6 +42,7 @@ public class LeagueRankingCLI
 
 		Scanner in;
 
+		// Attempt to read input file if it was provided in the command-line args
 		if (inputFile != null)
 		{
 			try
