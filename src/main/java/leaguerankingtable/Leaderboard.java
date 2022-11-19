@@ -9,6 +9,11 @@ public class Leaderboard
 {
 	private final Map<String, Team> leagueScores = new HashMap<>();
 
+	public Leaderboard()
+	{
+		//NOP
+	}
+
 	/**
 	 * Get a team from the league, or add a new team if it doesn't exist yet
 	 *
@@ -28,7 +33,7 @@ public class Leaderboard
 	 */
 	public void printFinalScores()
 	{
-		if (leagueScores.size() > 0)
+		if (!leagueScores.isEmpty())
 		{
 			// Get a list of all teams
 			List<Team> finalTeamScores = new ArrayList<>(leagueScores.values());

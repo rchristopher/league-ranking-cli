@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
  */
 public class LeagueRankingCLI
 {
-	private static final Pattern pattern = Pattern.compile("^(\\D+)\\s*(\\d+),\\s*(\\D+)\\s*(\\d+)");
+	private static final Pattern PATTERN = Pattern.compile("^(\\D+)\\s*(\\d+),\\s*(\\D+)\\s*(\\d+)");
 
 	public static void main(String[] args)
 	{
@@ -22,12 +22,10 @@ public class LeagueRankingCLI
 		{
 			for (int i = 0; i < args.length; i++)
 			{
-				if (args[i].equalsIgnoreCase("--filename"))
+				if ("--filename".equalsIgnoreCase(args[i]) && args.length >= i + 1)
 				{
-					if (args.length >= i + 1)
-					{
-						inputFile = new File(args[i + 1]);
-					}
+					inputFile = new File(args[i + 1]);
+					break;
 				}
 			}
 
@@ -37,8 +35,6 @@ public class LeagueRankingCLI
 				return;
 			}
 		}
-
-		Leaderboard leaderboard = new Leaderboard();
 
 		Scanner in;
 
@@ -59,19 +55,21 @@ public class LeagueRankingCLI
 			in = new Scanner(System.in);
 		}
 
+		Leaderboard leaderboard = new Leaderboard();
+
 		// Read input lines from System.in scanner
 		while (in.hasNextLine())
 		{
 			String inputLine = in.nextLine();
 
 			// End input if line separator is entered
-			if (inputLine.equals("") || inputLine.equals(System.lineSeparator()))
+			if ("".equals(inputLine) || inputLine.equals(System.lineSeparator()))
 			{
 				break;
 			}
 
 			// Find team details from regex pattern matcher
-			Matcher matcher = pattern.matcher(inputLine);
+			Matcher matcher = PATTERN.matcher(inputLine);
 			if (matcher.find())
 			{
 				// Get input fields from regex matcher
@@ -95,5 +93,13 @@ public class LeagueRankingCLI
 		}
 
 		leaderboard.printFinalScores();
+
+		try
+		{
+			in.close();
+		} catch (Exception e)
+		{
+			System.out.println("Error closing scanner: " + e.getMessage());
+		}
 	}
 }
