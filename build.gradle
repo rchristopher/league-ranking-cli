@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+
+    id 'application'
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+wrapper() {
+    gradleVersion = '7.4.1'
+}
+
+dependencies {
+    // Use JUnit test framework
+    testImplementation 'junit:junit:4.13.2'
+}
+
+// Define the main class for the application
+mainClassName = 'leaguerankingtable.LeagueRankingCLI'
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'leaguerankingtable.LeagueRankingCLI'
+        )
+    }
+}
