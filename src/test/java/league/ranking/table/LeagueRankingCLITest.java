@@ -151,6 +151,23 @@ public class LeagueRankingCLITest
 		Assert.assertEquals(expected, actual);
 	}
 
+	@Test
+	public void test_basic_invalid_input_arg_format()
+	{
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		PrintStream printStream = new PrintStream(baos);
+		System.setOut(printStream);
+
+		LeagueRankingCLI.main(new String[]{"--filenames", "./doesNotExist.txt"}); // call the main method
+
+		String[] lines = baos.toString().split(System.lineSeparator());
+		String actual = String.join(System.lineSeparator(), lines);
+
+		// checkout output
+		String expected = "Usage error: use --filename <filepath>";
+
+		Assert.assertEquals(expected, actual);
+	}
 
 	@Test
 	public void test_invalid_input_comma()
